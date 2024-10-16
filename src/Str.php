@@ -445,9 +445,21 @@ class Str
 
     public static function explode($separator, $str)
     {
-        return array_filter(explode($separator, $str), function($line) {
+        return array_filter(explode($separator, $str), function ($line) {
             return static::trim($line) !== '';
         });
+    }
+
+    /**
+     * Cap a string with a single instance of a given value.
+     * @param  string  $value
+     * @param  string  $cap
+     * @return string
+     */
+    public static function finish($value, $cap)
+    {
+        $quoted = preg_quote($cap, '/');
+        return preg_replace('/(?:'.$quoted.')+$/u', '', $value).$cap;
     }
 
     /**
@@ -583,24 +595,24 @@ class Str
             $pattern = [$pattern];
         }
 
-        foreach ($pattern as $pattern) {
-            $pattern = (string) $pattern;
+        foreach ($pattern as $_pattern) {
+            $_pattern = (string) $_pattern;
 
             // If the given value is an exact match we can of course return true right
             // from the beginning. Otherwise, we will translate asterisks and do an
             // actual pattern match against the two strings to see if they match.
-            if ($pattern === $value) {
+            if ($_pattern === $value) {
                 return true;
             }
 
-            $pattern = preg_quote($pattern, '#');
+            $_pattern = preg_quote($_pattern, '#');
 
             // Asterisks are translated into zero-or-more regular expression wildcards
             // to make it convenient to check if the strings starts with the given
             // pattern such as "library/*", making any string check convenient.
-            $pattern = str_replace('\*', '.*', $pattern);
+            $_pattern = str_replace('\*', '.*', $_pattern);
 
-            if (preg_match('#^'.$pattern.'\z#u', $value) === 1) {
+            if (preg_match('#^'.$_pattern.'\z#u', $value) === 1) {
                 return true;
             }
         }
@@ -875,10 +887,9 @@ class Str
             $pattern = [$pattern];
         }
 
-        foreach ($pattern as $pattern) {
-            $pattern = (string) $pattern;
-
-            if (preg_match($pattern, $value) === 1) {
+        foreach ($pattern as $_pattern) {
+            $_pattern = (string) $_pattern;
+            if (preg_match($_pattern, $value) === 1) {
                 return true;
             }
         }
