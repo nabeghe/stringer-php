@@ -48,13 +48,16 @@ echo UnicodeControls::ISS; // Invisible
 ### Stringer Class
 
 A string class.
-Accepts any value, converts it to a string via strval, stores it, and returns it via __toString
+
+Accepts any value, converts it to a string via strval, stores it, and returns it via __toString.
+
+It is possible to access the methods of the `Str` class through the `Stringer` object as well, with the difference that the main text parameter is no longer present.
 
 ```php
 use Nabeghe\Stringer\Stringer;
 
-$string = new Stringer('nabeghe/stringer');
-echo $string;
+$string = new Stringer('In programming, a string is a sequence of characters, and string manipulation processes these characters.');
+echo $string->after('string ')->before(','); // `is a sequence of characters`
 ```
 
 <hr>
