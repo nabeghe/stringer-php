@@ -1,11 +1,9 @@
-# Stringer (String Helper for PHP)
+# Stringer (String Helper for PHP ≥ 7.4) 
 
 > A string helper for PHP. It includes some useful methods and possibly other features.
 
 Some of the methods from the Str class of the Laravel framework are also included in this library;
 however, some of them have been modified.
-
-<hr>
 
 ## 🫡 Usage
 
@@ -16,8 +14,6 @@ You can install the package via composer:
 ```bash
 composer require nabeghe/stringer
 ```
-
-<hr>
 
 ### Str Class
 
@@ -31,8 +27,6 @@ use Nabeghe\Stringer\Str;
 echo Str::random(32);
 echo Str::random(32, '0123456789');
 ```
-
-<hr>
 
 ### UnicodeControls Class
 
@@ -60,10 +54,6 @@ $string = new Stringer('In programming, a string is a sequence of characters, an
 echo $string->after('string ')->before(','); // `is a sequence of characters`
 ```
 
-<hr>
-
 ## 📖 License
-
-Copyright (c) 2024 Hadi Akbarzadeh
 
 Licensed under the MIT license, see [LICENSE.md](LICENSE.md) for details.
